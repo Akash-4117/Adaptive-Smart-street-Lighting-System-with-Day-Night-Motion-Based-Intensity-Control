@@ -1,0 +1,39 @@
+const int ldr1 = 2;
+const int ldr2 = 3;
+const int ldr3 = 4;
+
+const int ldr1Output = 8;
+const int ldr2Output = 9;
+const int ldr3Output = 10;
+
+void setup() {
+  // Initialize the input pins
+  pinMode(ldr1, INPUT);
+  pinMode(ldr2, INPUT);
+  pinMode(ldr3, INPUT);
+
+  // Initialize the output pins
+  pinMode(ldr1Output, OUTPUT);
+  pinMode(ldr2Output, OUTPUT);
+  pinMode(ldr3Output, OUTPUT);
+
+  // Ensure all outputs are initially LOW (pulled down)
+  digitalWrite(ldr1Output, LOW);
+  digitalWrite(ldr2Output, LOW);
+  digitalWrite(ldr3Output, LOW);
+}
+
+void loop() {
+  // Read the state of the LDR pins
+  int ldr1State = digitalRead(ldr1);
+  int ldr2State = digitalRead(ldr2);
+  int ldr3State = digitalRead(ldr3);
+
+  // Set the corresponding output pins HIGH if the LDR pins are HIGH
+  digitalWrite(ldr1Output, ldr1State == HIGH ? HIGH : LOW);
+  digitalWrite(ldr2Output, ldr2State == HIGH ? HIGH : LOW);
+  digitalWrite(ldr3Output, ldr3State == HIGH ? HIGH : LOW);
+
+  // Small delay to debounce
+  delay(50);
+}
